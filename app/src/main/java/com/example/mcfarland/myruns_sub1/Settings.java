@@ -136,16 +136,9 @@ public class Settings extends Activity {
      */
     public void clickClear(View v) {
         Log.d(TAG, "clicked Clear");
-        clearData();
-        mCurrentImageUri = null;
-        deleteProfilePicture();
-        cleanSnaps();
 
-        Toast toast = Toast.makeText(this, "Cleared Data", Toast.LENGTH_SHORT);
-        toast.show();
-
-        loadInfo();
-        loadPicture();
+        MyRunsDialogFragment.newInstance(MyRunsDialogFragment.DIALOG_CONFIRM_CLEAR)
+                .show(getFragmentManager(), getString(R.string.dialog_tag_clear));
     }
 
     /*
@@ -169,6 +162,22 @@ public class Settings extends Activity {
 
 
     /* ------------------------------ Profile Management Functions ------------------------------ */
+
+    /*
+     * clears all user data
+     */
+    public void clearProfile() {
+        clearData();
+        mCurrentImageUri = null;
+        deleteProfilePicture();
+        cleanSnaps();
+
+        Toast toast = Toast.makeText(this, "Cleared Data", Toast.LENGTH_SHORT);
+        toast.show();
+
+        loadInfo();
+        loadPicture();
+    }
 
     /*
      * Loads any saved user information

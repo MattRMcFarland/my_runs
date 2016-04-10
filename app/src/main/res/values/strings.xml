@@ -19,6 +19,7 @@
     <string name="dialog_tag_calories">calories dialog</string>
     <string name="dialog_tag_HR">HR dialog</string>
     <string name="dialog_tag_comment">comment dialog</string>
+    <string name="dialog_tag_clear">confirm clear</string>
 
     <!-- settings activity -->
     <string name="settings_profile_picture_filename">profile_picture.png</string>
@@ -45,6 +46,7 @@
         <item>From Camera</item>
         <item>From Gallery</item>
     </string-array>
+    <string name="settings_confirm_clear_title">Are you sure you want to clear all data?</string>
 
 
     <string name="action_settings">Settings</string>
@@ -87,9 +89,12 @@
         <item>2</item>
     </string-array>
 
+    <!--MapDisplayActivity-->
+    <string name="map_display_title">Map</string>
+
     <!-- Settings Preference Fragment -->
-    <string name="dialog_title_units">dialog title units</string>
-    <string name="dialog_title_comments">dialog title comments</string>
+    <string name="dialog_title_units">Pick Units</string>
+    <string name="dialog_title_comments">Enter Comment</string>
 
     <!-- Manual Entry Activity -->
     <string-array name="manual_entry_fields">
@@ -104,7 +109,6 @@
     <string name="manual_entry_save">SAVE</string>
     <string name="manual_entry_cancel">CANCEL</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="history_frag_blank">History Fragment</string>
     <string name="settings_frag_blank">Settings Fragment</string>

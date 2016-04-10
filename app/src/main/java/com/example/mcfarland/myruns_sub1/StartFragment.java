@@ -103,11 +103,25 @@ public class StartFragment extends Fragment {
             case 1:
                 // if in GPS mode -> start MapDisplayActivity
                 Log.d(TAG, "starting GPS entry activity");
+                i = new Intent(this.getActivity(), MapDisplayActivity.class);
+                i.putExtra(getString(R.string.start_frag_input_type),
+                        mInputSpinner.getSelectedItemPosition());
+                i.putExtra(getString(R.string.start_frag_activity_type),
+                        mActivitySpinner.getSelectedItemPosition());
+
+                startActivity(i);
                 break;
 
             case 2:
                 // if in Automatic mode -> start MapDisplayActivity
                 Log.d(TAG, "starting Automatic entry activity");
+                i = new Intent(this.getActivity(), MapDisplayActivity.class);
+                i.putExtra(getString(R.string.start_frag_input_type),
+                        mInputSpinner.getSelectedItemPosition());
+                i.putExtra(getString(R.string.start_frag_activity_type),
+                        mActivitySpinner.getSelectedItemPosition());
+
+                startActivity(i);
                 break;
         }
 

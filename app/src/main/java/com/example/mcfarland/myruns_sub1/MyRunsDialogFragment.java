@@ -38,6 +38,8 @@ public class MyRunsDialogFragment extends DialogFragment {
 	public static final int DIALOG_MANUAL_ENTRY_HR = 7;
 	public static final int DIALOG_MANUAL_ENTRY_COMMENT = 8;
 
+	public static final int DIALOG_CONFIRM_CLEAR = 9;
+
 	// For photo picker selection:
 	public static final int ID_PHOTO_PICKER_FROM_CAMERA = 0;
 	public static final int ID_PHOTO_PICKER_FROM_GALLERY = 1;
@@ -233,6 +235,24 @@ public class MyRunsDialogFragment extends DialogFragment {
 				});
 
 				return builder_comment.create();
+
+			case DIALOG_CONFIRM_CLEAR:
+				AlertDialog.Builder builder_clear = new AlertDialog.Builder(parent);
+				builder_clear.setTitle(R.string.settings_confirm_clear_title);
+
+				builder_clear.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						((Settings) parent).clearProfile();
+					}
+				});
+
+				builder_clear.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// exit
+					}
+				});
+
+				return builder_clear.create();
 
 			default:
 				return null;

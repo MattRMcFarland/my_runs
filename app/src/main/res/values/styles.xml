@@ -3,6 +3,12 @@
     <!--<style name="AppTheme" parent="android:Theme.Holo"></style>-->
     <style name="AppTheme" parent="android:Theme.Light"></style>
 
+
+    <style name="Theme.FullScreen" parent="@android:style/Theme.Light">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->

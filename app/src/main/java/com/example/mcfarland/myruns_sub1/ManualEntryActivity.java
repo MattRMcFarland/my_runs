@@ -62,7 +62,6 @@ public class ManualEntryActivity extends Activity {
                     case 1: // time
                         MyRunsDialogFragment.newInstance(MyRunsDialogFragment.DIALOG_MANUAL_ENTRY_TIME)
                                 .show(getFragmentManager(), getString(R.string.dialog_tag_time_picker));
-                        // make time dialog
                         break;
 
                     case 2: // duration
@@ -101,6 +100,7 @@ public class ManualEntryActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        // TODO: save mNewEntry
         //outState.putParcelable(EXERCISE_ENTRY_TAG, mNewEntry);
     }
 

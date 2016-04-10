@@ -24,13 +24,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:appcompat-v7:21.0.3'
     //compile 'com.android.support:support-v4:23.0.3'
     //compile 'com.android.support:support-v13:23.0.3'
+    
+    //compile 'com.android.support:design:23.2.1'
+compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v13:21.0.3'
-
-
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
-    //compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:support-v4:21.0.3'
 }
