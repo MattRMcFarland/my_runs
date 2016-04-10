@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.mcfarland.myruns_sub1.Settings"
+    android:gravity="top">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_picture"
+                android:id="@+id/picture_field" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/settings_picture_square"
+                    android:layout_height="@dimen/settings_picture_square"
+                    android:id="@+id/profile_picture"
+                    android:layout_weight="1"
+                    android:layout_gravity="center" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_change"
+                    android:id="@+id/picture_button"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:layout_marginRight="@dimen/settings_option_margin"
+                    android:layout_marginLeft="@dimen/settings_option_margin"
+                    android:onClick="clickChangePicture" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_user"
+                android:id="@+id/textView" />
+
+            <!-- from http://stackoverflow.com/questions/1555109/stop-edittext-from-gaining-focus-at-activity-startup -->
+            <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/name_field"
+                    android:hint="@string/settings_name_hint"
+                    android:inputType="textPersonName"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_email"
+                    android:id="@+id/textView2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email_field"
+                android:hint="@string/settings_email_hint"
+                android:inputType="textEmailAddress"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_phone"
+                android:id="@+id/textView3" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone_field"
+                android:hint="@string/settings_phone_hint"
+                android:inputType="phone"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_gender"
+                android:id="@+id/textView4" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:measureWithLargestChild="false"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/gender_button_male"
+                    android:id="@+id/male_button"
+                    android:onClick="clickMale" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/gender_button_female"
+                    android:id="@+id/female_button"
+                    android:checked="false"
+                    android:onClick="clickFemale" />
+            </RadioGroup>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_class"
+                android:id="@+id/settings_class" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/class_field"
+                android:hint="@string/class_hint"
+                android:layout_weight="1"
+                android:inputType="text" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_major"
+                android:id="@+id/textView5" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/major_field"
+                android:hint="@string/setting_major_hint"
+                android:inputType="text"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/settings_option_margin" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_save"
+                    android:id="@+id/save_button"
+                    android:onClick="clickSave" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_cancel"
+                    android:id="@+id/cancel_button"
+                    android:onClick="clickCancel" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_clear"
+                android:id="@+id/clear_button"
+                android:onClick="clickClear" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

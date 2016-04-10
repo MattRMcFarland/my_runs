@@ -1,0 +1,93 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mcfarland.myruns_sub1.StartFragment">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_frag_input_type"
+                android:id="@+id/textView6"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:autoText="false" />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_frag_input_spinner"
+                android:layout_below="@+id/textView6"
+                android:layout_alignLeft="@+id/textView6"
+                android:layout_alignStart="@+id/textView6"
+                android:spinnerMode="dropdown" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/fab_margin"
+                android:id="@+id/space1"
+                android:layout_below="@+id/start_frag_input_spinner"
+                android:layout_alignLeft="@+id/start_frag_input_spinner"
+                android:layout_alignStart="@+id/start_frag_input_spinner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_frag_activity_type"
+                android:id="@+id/textView7"
+                android:autoText="false"
+                android:layout_below="@+id/space1" />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_frag_activity_spinner"
+                android:layout_below="@+id/textView7"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_alignStart="@+id/textView7" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:id="@+id/space2"
+                android:layout_below="@+id/start_frag_activity_spinner"
+                android:layout_alignLeft="@+id/start_frag_input_spinner"
+                android:layout_alignStart="@+id/start_frag_input_spinner" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_frag_START"
+                android:id="@+id/start_frag_start_button"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/space2"/>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_frag_start_button"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/space" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_frag_SYNC"
+                android:id="@+id/start_frag_sync_button"
+                android:layout_below="@+id/space"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

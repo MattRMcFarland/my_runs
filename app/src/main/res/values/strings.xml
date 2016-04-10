@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">MyRuns_McFarland</string>
+
+    <!--dialog strings-->
+    <string name="dialog_fragment_tag_photo_picker">Choose Photo Source</string>
+    <string name="manual_entry_date_dialog_title">Choose Date</string>
+    <string name="manual_entry_time_dialog_title">Choose Time</string>
+    <string name="manual_entry_duration_dialog_title">Enter Duration</string>
+    <string name="manual_entry_distance_dialog_title">Enter Distance</string>
+    <string name="manual_entry_calories_dialog_title">Enter Calories</string>
+    <string name="manual_entry_HR_dialog_title">Enter Heart Rate</string>
+    <string name="manual_entry_comment_dialog_title">Enter Comment</string>
+    <string name="manual_entry_comment_dialog_prompt">Enter Workout Details</string>
+
+    <string name="dialog_tag_date_picker">date picker</string>
+    <string name="dialog_tag_time_picker">time picker</string>
+    <string name="dialog_tag_duration">duration dialog</string>
+    <string name="dialog_tag_distance">distance dialog</string>
+    <string name="dialog_tag_calories">calories dialog</string>
+    <string name="dialog_tag_HR">HR dialog</string>
+    <string name="dialog_tag_comment">comment dialog</string>
+
+    <!-- settings activity -->
+    <string name="settings_profile_picture_filename">profile_picture.png</string>
+    <string name="settings_name_hint">Enter Your Name</string>
+    <string name="settings_user">User</string>
+    <string name="settings_email">Email</string>
+    <string name="settings_email_hint">Enter Your Email</string>
+    <string name="settings_phone">Phone</string>
+    <string name="settings_phone_hint">Enter Your Phone</string>
+    <string name="settings_gender">Gender</string>
+    <string name="gender_button_male">Male</string>
+    <string name="gender_button_female">Female</string>
+    <string name="settings_major">Major</string>
+    <string name="setting_major_hint">Enter Your Major</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_clear">Clear</string>
+    <string name="settings_picture">Profile Picture</string>
+    <string name="settings_change">Change</string>
+    <string name="settings_class">Class</string>
+    <string name="class_hint">e.g. 2016</string>
+    <string name="ui_profile_photo_picker_title">Choose Picture Source</string>
+    <string-array name="ui_profile_photo_picker_items">
+        <item>From Camera</item>
+        <item>From Gallery</item>
+    </string-array>
+
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Start Fragment -->
+    <string name="start_frag_blank">Start Fragment</string>
+    <string name="start_frag_input_type">Input Type</string>
+    <string name="start_frag_activity_type">Activity Type</string>
+    <string name="start_frag_START">START</string>
+    <string name="start_frag_SYNC">SYNC</string>
+    <string name="start_frag_input_type_prompt">Select Input Mode</string>
+    <string-array name="activity_types">
+        <item>Running</item>
+        <item>Walking</item>
+        <item>Standing</item>
+        <item>Cycling</item>
+        <item>Hiking</item>
+        <item>Downhill Skiing</item>
+        <item>Cross-Country Skiing</item>
+        <item>Snowboarding</item>
+        <item>Skating</item>
+        <item>Rowing</item>
+        <item>Swimming</item>
+        <item>Mountain Biking</item>
+        <item>Wheelchair</item>
+        <item>Elliptical</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="input_types">
+        <item>Manual</item>
+        <item>GPS</item>
+        <item>Automatic</item>
+    </string-array>
+    <string-array name="unit_types">
+        <item>Metric (Kilometers)</item>
+        <item>Imperial (Miles)</item>
+    </string-array>
+    <string-array name="unit_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Settings Preference Fragment -->
+    <string name="dialog_title_units">dialog title units</string>
+    <string name="dialog_title_comments">dialog title comments</string>
+
+    <!-- Manual Entry Activity -->
+    <string-array name="manual_entry_fields">
+        <item>Date</item>
+        <item>Time</item>
+        <item>Duration</item>
+        <item>Distance</item>
+        <item>Calories</item>
+        <item>Heart Rate</item>
+        <item>Comment</item>
+    </string-array>
+    <string name="manual_entry_save">SAVE</string>
+    <string name="manual_entry_cancel">CANCEL</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history_frag_blank">History Fragment</string>
+    <string name="settings_frag_blank">Settings Fragment</string>
+
+</resources>

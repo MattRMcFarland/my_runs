@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    tools:context="com.example.mcfarland.myruns_sub1.ManualEntryActivity">
+
+    <ListView
+        android:id="@+id/manual_entry_list"
+        android:layout_width="match_parent"
+        android:layout_height="308dp"
+        android:entries="@array/manual_entry_fields"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true">
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/manual_entry_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_entry_save"
+            android:layout_weight="1"
+            android:onClick="onClickSave"/>
+
+        <Button
+            android:id="@+id/manual_entry_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_entry_cancel"
+            android:layout_weight="1"
+            android:onClick="onClickCancel"/>
+
+    </LinearLayout>
+</RelativeLayout>
