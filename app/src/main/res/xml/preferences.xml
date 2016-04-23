@@ -23,9 +23,10 @@
         android:title="Additional Settings">
 
         <ListPreference
-            android:key="settings_unit_preferences"
+            android:key="@string/unit_preference_key"
             android:title="Unit Preferences"
             android:summary="Select the units"
+            android:defaultValue="1"
             android:dialogTitle="@string/dialog_title_units"
             android:entries="@array/unit_types"
             android:entryValues="@array/unit_values" ></ListPreference>

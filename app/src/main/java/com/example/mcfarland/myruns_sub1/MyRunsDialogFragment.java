@@ -30,6 +30,7 @@ public class MyRunsDialogFragment extends DialogFragment {
 	// Different dialog IDs
 	public static final int DIALOG_ID_ERROR = -1;
 	public static final int DIALOG_ID_PHOTO_PICKER = 1;
+
 	public static final int DIALOG_MANUAL_ENTRY_DATE = 2;
 	public static final int DIALOG_MANUAL_ENTRY_TIME = 3;
 	public static final int DIALOG_MANUAL_ENTRY_DURATION = 4;
@@ -86,11 +87,7 @@ public class MyRunsDialogFragment extends DialogFragment {
 				DatePickerDialog.OnDateSetListener mDateListener = new DatePickerDialog.OnDateSetListener() {
 					public void onDateSet(DatePicker view, int year, int monthOfYear,
 										  int dayOfMonth) {
-						Log.d(TAG, "setting date");
-						// TODO save date information
-//						mDateAndTime.set(Calendar.YEAR, year);
-//						mDateAndTime.set(Calendar.MONTH, monthOfYear);
-//						mDateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+						((ManualEntryActivity)parent).setDate(year, monthOfYear, dayOfMonth);
 					}
 				};
 
@@ -107,9 +104,7 @@ public class MyRunsDialogFragment extends DialogFragment {
 			case DIALOG_MANUAL_ENTRY_TIME:
 				TimePickerDialog.OnTimeSetListener mTimeListener = new TimePickerDialog.OnTimeSetListener() {
 					public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-						// TODO save set time
-//						mDateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-//						mDateAndTime.set(Calendar.MINUTE, minute);
+						((ManualEntryActivity)parent).setTime(hourOfDay, minute);
 					}
 				};
 
@@ -126,13 +121,14 @@ public class MyRunsDialogFragment extends DialogFragment {
 				AlertDialog.Builder builder_duration = new AlertDialog.Builder(parent);
 				builder_duration.setTitle(R.string.manual_entry_duration_dialog_title);
 
-				EditText duration_field = new EditText(parent);
+				final EditText duration_field = new EditText(parent);
 				duration_field.setInputType(InputType.TYPE_CLASS_NUMBER);
+				duration_field.setHint(R.string.ME_duration_hint);
 				builder_duration.setView(duration_field);
 
 				builder_duration.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// TODO pass duration to parent
+						((ManualEntryActivity) parent).setDuration(duration_field.getText().toString());
 					}
 				});
 
@@ -148,13 +144,21 @@ public class MyRunsDialogFragment extends DialogFragment {
 				AlertDialog.Builder builder_distance = new AlertDialog.Builder(parent);
 				builder_distance.setTitle(R.string.manual_entry_distance_dialog_title);
 
-				EditText distance_field = new EditText(parent);
+				Conversions converter = new Conversions(getActivity());
+
+				final EditText distance_field = new EditText(parent);
 				distance_field.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+				if (converter.isPreferenceMetric())
+					distance_field.setHint(R.string.ME_distance_hint_metric);
+				else
+					distance_field.setHint(R.string.ME_distance_hint_imperial);
+
 				builder_distance.setView(distance_field);
 
 				builder_distance.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// TODO pass calories to parent
+						((ManualEntryActivity) parent).setDistance(distance_field.getText().toString());
 					}
 				});
 
@@ -170,14 +174,13 @@ public class MyRunsDialogFragment extends DialogFragment {
 				AlertDialog.Builder builder_calories = new AlertDialog.Builder(parent);
 				builder_calories.setTitle(R.string.manual_entry_calories_dialog_title);
 
-				EditText calories_field = new EditText(parent);
+				final EditText calories_field = new EditText(parent);
 				calories_field.setInputType(InputType.TYPE_CLASS_NUMBER);
 				builder_calories.setView(calories_field);
 
 				builder_calories.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// TODO pass calories to parent
-						// parent.getEntry.setCalories ?
+						((ManualEntryActivity) parent).setCalories(calories_field.getText().toString());
 					}
 				});
 
@@ -193,14 +196,13 @@ public class MyRunsDialogFragment extends DialogFragment {
 				AlertDialog.Builder builder_HR = new AlertDialog.Builder(parent);
 				builder_HR.setTitle(R.string.manual_entry_HR_dialog_title);
 
-				EditText HR_field = new EditText(parent);
+				final EditText HR_field = new EditText(parent);
 				HR_field.setInputType(InputType.TYPE_CLASS_NUMBER);
 				builder_HR.setView(HR_field);
 
 				builder_HR.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// TODO pass HR to parent
-						// parent.getEntry.setHR ?
+						((ManualEntryActivity) parent).setHeartRate(HR_field.getText().toString());
 					}
 				});
 
@@ -216,15 +218,14 @@ public class MyRunsDialogFragment extends DialogFragment {
 				AlertDialog.Builder builder_comment = new AlertDialog.Builder(parent);
 				builder_comment.setTitle(R.string.manual_entry_comment_dialog_title);
 
-				EditText comment_field = new EditText(parent);
+				final EditText comment_field = new EditText(parent);
 				comment_field.setInputType(InputType.TYPE_CLASS_TEXT);
 				comment_field.setHint(R.string.manual_entry_comment_dialog_prompt);
 				builder_comment.setView(comment_field);
 
 				builder_comment.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// TODO pass comment to parent
-						// parent.getEntry.setHR ?
+						((ManualEntryActivity) parent).setComment(comment_field.getText().toString());
 					}
 				});
 
@@ -236,6 +237,7 @@ public class MyRunsDialogFragment extends DialogFragment {
 
 				return builder_comment.create();
 
+			// for Settings activity
 			case DIALOG_CONFIRM_CLEAR:
 				AlertDialog.Builder builder_clear = new AlertDialog.Builder(parent);
 				builder_clear.setTitle(R.string.settings_confirm_clear_title);

@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">MyRuns_McFarland</string>
+    <string name="app_name">MyRuns - McFarland</string>
 
     <!--dialog strings-->
     <string name="dialog_fragment_tag_photo_picker">Choose Photo Source</string>
     <string name="manual_entry_date_dialog_title">Choose Date</string>
     <string name="manual_entry_time_dialog_title">Choose Time</string>
     <string name="manual_entry_duration_dialog_title">Enter Duration</string>
+    <string name="ME_duration_hint">in minutes...</string>
     <string name="manual_entry_distance_dialog_title">Enter Distance</string>
+    <string name="ME_distance_hint_imperial">in miles...</string>
+    <string name="ME_distance_hint_metric">in kilometers...</string>
     <string name="manual_entry_calories_dialog_title">Enter Calories</string>
     <string name="manual_entry_HR_dialog_title">Enter Heart Rate</string>
     <string name="manual_entry_comment_dialog_title">Enter Comment</string>
@@ -95,6 +98,7 @@
     <!-- Settings Preference Fragment -->
     <string name="dialog_title_units">Pick Units</string>
     <string name="dialog_title_comments">Enter Comment</string>
+    <string name="unit_preference_key">unit preference</string>
 
     <!-- Manual Entry Activity -->
     <string-array name="manual_entry_fields">
@@ -108,6 +112,9 @@
     </string-array>
     <string name="manual_entry_save">SAVE</string>
     <string name="manual_entry_cancel">CANCEL</string>
+
+    <!-- ExerciseDisplayActivity-->
+    <string name="AD_menu_delete">DELETE</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="history_frag_blank">History Fragment</string>

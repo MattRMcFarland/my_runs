@@ -8,9 +8,10 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 import com.soundcloud.android.crop.Crop;
 
-public class Settings extends Activity {
+public class Settings extends ActionBarActivity {
 
     /* ------------------------------ Callback Codes ------------------------------ */
     public static final int REQUEST_CODE_TAKE_FROM_CAMERA = 0;
@@ -88,6 +89,12 @@ public class Settings extends Activity {
 
         loadInfo();
         loadPicture();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override

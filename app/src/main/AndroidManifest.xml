@@ -5,24 +5,23 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <uses-feature android:name="android.hardware.camera" />
-
-        <uses-permission android:name="android.permission.CAMERA" />
-
+        android:theme="@style/Theme.AppCompat.Light">
         <activity android:name=".Settings">
             <intent-filter>
                 <action android:name="com.example.mcfarland.myruns_sub1.SettingsActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
@@ -38,10 +37,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ManualEntryActivity">
-        </activity>
+        <activity android:name=".ManualEntryActivity"></activity>
 
-        <activity android:name=".MapDisplayActivity" android:label="@string/map_display_title"></activity>
+        <activity
+            android:name=".MapDisplayActivity"
+            android:label="@string/map_display_title" />
+
+        <activity android:name=".ExerciseDisplayActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

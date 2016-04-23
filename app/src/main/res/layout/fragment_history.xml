@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.mcfarland.myruns_sub1.HistoryFragment">
 
-    <!-- TODO: add historical entries to list -->
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/history_exercise_list" />
+        android:id="@+id/android:list" />
 
 </FrameLayout>
