@@ -9,6 +9,13 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="true"
@@ -29,6 +36,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBhv4_oD7RhRPGiEpVurJCRueuLdM6pOHw"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,20 +48,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ManualEntryActivity"></activity>
+        <activity android:name=".ManualEntryActivity"/>
 
         <activity
             android:name=".MapDisplayActivity"
-            android:label="@string/map_display_title" />
+            android:label="@string/map_display_title"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.example.mcfarland.myruns_sub1.LOCATION_BROADCAST" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".ExerciseDisplayActivity"
             android:theme="@style/Theme.AppCompat.Light">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
+
+        <service android:name=".LocationTrackerService"/>
+
     </application>
 
 </manifest>

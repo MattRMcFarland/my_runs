@@ -32,8 +32,8 @@ public class ManualEntryActivity extends ActionBarActivity {
             Log.d(TAG,"making a new exercise entry");
             Intent intent = getIntent();
             EM = new ExerciseEntryManager(this,
-                    intent.getIntExtra(getString(R.string.start_frag_input_type),0),
-                    intent.getIntExtra(getString(R.string.start_frag_activity_type),0));
+                    intent.getIntExtra(getString(R.string.start_frag_activity_type),0),
+                    intent.getIntExtra(getString(R.string.start_frag_input_type),0));
 
         } else {
             Log.d(TAG,"reloading saved exercise entry");

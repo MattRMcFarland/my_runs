@@ -3,26 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="0dp"
     tools:context="com.example.mcfarland.myruns_sub1.MapDisplayActivity">
 
-    <!--android:theme="@style/AppTheme.NoActionBar"-->
+    <fragment
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        class="com.google.android.gms.maps.SupportMapFragment" >
+    </fragment>
 
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-    <!--<fragment-->
-        <!--android:id="@+id/map"-->
-        <!--class="com.google.android.gms.maps.MapFragment" >-->
-    <!--</fragment>-->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_input_type"
+            android:text="" />
 
-    <!--<LinearLayout>-->
-        <!--<TextView-->
-            <!--android:id="@+id/type_stats"-->
-            <!--android:text=" " />-->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_avg_speed"
+            android:text="" />
 
-    <!--</LinearLayout>-->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_cur_speed"
+            android:text="" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_climb"
+            android:text="" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_calorie"
+            android:text="" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/MD_distance"
+            android:text="" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_gravity="bottom"

@@ -83,17 +83,16 @@ public class StartFragment extends Fragment {
     }
 
     public void onClickStart(View V) {
-        Log.d(TAG, "clicked Start");
-
         Intent i;
-
         switch(mInputSpinner.getSelectedItemPosition()) {
             case 0:
                 // if manual entry -> start manual entry activity
-                Log.d(TAG, "starting manual entry");
+                Log.d(TAG, "starting manual entry with Input: " + mInputSpinner.getSelectedItemPosition() + " and Activity: " + mActivitySpinner.getSelectedItemPosition());
                 i = new Intent(this.getActivity(), ManualEntryActivity.class);
+
                 i.putExtra(getString(R.string.start_frag_input_type),
                         mInputSpinner.getSelectedItemPosition());
+
                 i.putExtra(getString(R.string.start_frag_activity_type),
                         mActivitySpinner.getSelectedItemPosition());
 
@@ -102,10 +101,12 @@ public class StartFragment extends Fragment {
 
             case 1:
                 // if in GPS mode -> start MapDisplayActivity
-                Log.d(TAG, "starting GPS entry activity");
+                Log.d(TAG, "starting GPS entry with Input: " + mInputSpinner.getSelectedItemPosition() + " and Activity: " + mActivitySpinner.getSelectedItemPosition());
                 i = new Intent(this.getActivity(), MapDisplayActivity.class);
+
                 i.putExtra(getString(R.string.start_frag_input_type),
                         mInputSpinner.getSelectedItemPosition());
+
                 i.putExtra(getString(R.string.start_frag_activity_type),
                         mActivitySpinner.getSelectedItemPosition());
 
@@ -114,10 +115,12 @@ public class StartFragment extends Fragment {
 
             case 2:
                 // if in Automatic mode -> start MapDisplayActivity
-                Log.d(TAG, "starting Automatic entry activity");
+                Log.d(TAG, "starting Automatic entry with Input: " + mInputSpinner.getSelectedItemPosition() + " and Activity: " + mActivitySpinner.getSelectedItemPosition());
                 i = new Intent(this.getActivity(), MapDisplayActivity.class);
+
                 i.putExtra(getString(R.string.start_frag_input_type),
                         mInputSpinner.getSelectedItemPosition());
+
                 i.putExtra(getString(R.string.start_frag_activity_type),
                         mActivitySpinner.getSelectedItemPosition());
 

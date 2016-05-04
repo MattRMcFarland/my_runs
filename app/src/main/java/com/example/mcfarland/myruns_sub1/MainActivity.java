@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
             public void onPageSelected(int position) {
                 switch(position) {
                     case 1:
+                        Log.d(TAG,"refreshing history fragment");
                         HistoryFragment histFrag = (HistoryFragment) myViewPageAdapter.getItem(1);
                         histFrag.reloadDatabase();
                         break;

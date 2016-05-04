@@ -15,6 +15,7 @@ import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -66,22 +67,43 @@ public class MyRunsDialogFragment extends DialogFragment {
 		Dialog to_return;
 		// Setup dialog appearance and onClick Listeners
 		switch (dialog_id) {
+
+			/* --------------------------- DIALOGS FOR SETTINGS ACTIVITY --------------------------- */
+
 			case DIALOG_ID_PHOTO_PICKER:
-				// Build picture picker dialog for choosing from camera or gallery
 				AlertDialog.Builder builder = new AlertDialog.Builder(parent);
 				builder.setTitle(R.string.ui_profile_photo_picker_title);
-				// Set up click listener, firing intents open camera
 				DialogInterface.OnClickListener dlistener = new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int item) {
 						// Item is ID_PHOTO_PICKER_FROM_CAMERA
 						// Call the onPhotoPickerItemSelected in the parent
-						((Settings) parent)
-								.onPhotoPickerItemSelected(item);
+						((Settings) parent).onPhotoPickerItemSelected(item);
 					}
 				};
-				// Set the item/s to display and create the dialog
 				builder.setItems(R.array.ui_profile_photo_picker_items, dlistener);
 				return builder.create();
+
+			case DIALOG_CONFIRM_CLEAR:
+				AlertDialog.Builder builder_clear = new AlertDialog.Builder(parent);
+				builder_clear.setTitle(R.string.settings_confirm_clear_title);
+
+				builder_clear.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						Toast.makeText(getActivity(), "Cleared All Data", Toast.LENGTH_SHORT).show();
+						((Settings) parent).clearProfile();
+					}
+				});
+
+				builder_clear.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// exit
+					}
+				});
+
+				return builder_clear.create();
+
+
+			/* --------------------------- DIALOGS FOR MANUAL ENTRY --------------------------- */
 
 			case DIALOG_MANUAL_ENTRY_DATE:
 				DatePickerDialog.OnDateSetListener mDateListener = new DatePickerDialog.OnDateSetListener() {
@@ -237,35 +259,12 @@ public class MyRunsDialogFragment extends DialogFragment {
 
 				return builder_comment.create();
 
-			// for Settings activity
-			case DIALOG_CONFIRM_CLEAR:
-				AlertDialog.Builder builder_clear = new AlertDialog.Builder(parent);
-				builder_clear.setTitle(R.string.settings_confirm_clear_title);
 
-				builder_clear.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						((Settings) parent).clearProfile();
-					}
-				});
-
-				builder_clear.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// exit
-					}
-				});
-
-				return builder_clear.create();
 
 			default:
 				return null;
 		}
 
 	}
-
-//	private void updateDateAndTimeDisplay() {
-//		mDisplayDateTime.setText(DateUtils.formatDateTime(this,
-//				mDateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE
-//						| DateUtils.FORMAT_SHOW_TIME));
-//	}
 
 }

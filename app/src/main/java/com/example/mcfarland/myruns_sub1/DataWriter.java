@@ -13,24 +13,25 @@ public class DataWriter extends AsyncTask<Object, Void, Void> {
     private static final String TAG = "ASYNC WRITER";
     Context mContext;
     EEDataSource dataSource;
+    private long id = -1;
 
     /*
      * expects first parameter to be a context argument
-     * expects second paramter to be the exercise entry
+     * expects second parameter to be the exercise entry
      */
     @Override
     protected Void doInBackground(Object... params) {
-        Log.d(TAG, "writing new entry to database");
+        Log.d(TAG, "writing new entry to database: " + ((ExerciseEntry) params[1]).toString());
 
         mContext = (Context) params[0];
         dataSource = new EEDataSource(mContext);
-        dataSource.createEntry((ExerciseEntry) params[1]);
+        id = dataSource.createEntry((ExerciseEntry) params[1]);
 
         return null;
     }
 
     @Override
     protected void onPostExecute(Void result) {
-        Toast.makeText(mContext, "Wrote Entry", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "Wrote Entry to database - ID: " + id);
     }
 }

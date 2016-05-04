@@ -30,26 +30,6 @@ public class HistoryFragment extends ListFragment implements LoaderManager.Loade
     private MyListAdapter mAdapter;
 
 
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//
-//        Log.d(TAG, "calling on Activity Created");
-//
-//        // Give some text to display if there is no data.  In a real
-//        // application this would come from a resource.
-//        setEmptyText("No Saved Entries");
-//
-//        // We have a menu item to show in action bar.
-//        //setHasOptionsMenu(true);
-//
-////        setListAdapter(mAdapter);
-//
-//        // Prepare the loader.  Either re-connect with an existing one,
-//        // or start a new one.
-//        // getLoaderManager().initLoader(0, null, this);
-//    }
-
     public void onCreate(Bundle bundle) {
         Log.d(TAG,"creating history fragment");
         super.onCreate(bundle);
@@ -60,10 +40,6 @@ public class HistoryFragment extends ListFragment implements LoaderManager.Loade
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG,"creating history fragment view");
-        //mContext = getActivity();
-
-        //getLoaderManager().initLoader(0, null, this);
-        //getLoaderManager().restartLoader(0, null, this);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_history, container, false);
@@ -83,7 +59,22 @@ public class HistoryFragment extends ListFragment implements LoaderManager.Loade
         ExerciseEntry raw_entry = (ExerciseEntry) l.getItemAtPosition(position);
         ExerciseEntryManager EM = new ExerciseEntryManager(mContext,raw_entry);
 
-        // start ExerciseDisplayActivity
+        switch (EM.getInputType()) {
+            case ExerciseEntry.MANUAL_INPUT:
+                startManualDisplay(EM);
+                break;
+
+            case ExerciseEntry.GPS_INPUT:
+            case ExerciseEntry.AUTOMATIC_INPUT:
+                startMapDisplay(EM.getID());
+                break;
+        }
+    }
+
+
+    private void startManualDisplay(ExerciseEntryManager EM) {
+
+        Log.d(TAG, "Starting manual entry display of exercise entry: " + EM.getID());
         Intent i = new Intent(mContext, ExerciseDisplayActivity.class);
 
         // store relevant display data
@@ -98,6 +89,16 @@ public class HistoryFragment extends ListFragment implements LoaderManager.Loade
         i.putExtra(ExerciseDisplayActivity.COMMENT_KEY, EM.getComment());
 
         // start display
+        startActivity(i);
+    }
+
+    private void startMapDisplay(long exerciseID) {
+
+        Log.d(TAG, "Starting map display of exercise entry: " + exerciseID);
+        Intent i = new Intent(mContext, MapDisplayActivity.class);
+
+        i.putExtra(MapDisplayActivity.MAP_DISPLAY_ID_KEY, exerciseID);
+
         startActivity(i);
     }
 
@@ -118,7 +119,6 @@ public class HistoryFragment extends ListFragment implements LoaderManager.Loade
     @Override
     public void onLoaderReset(Loader<ArrayList<ExerciseEntry>> loader) {
         Log.d(TAG, "resetting loader");
-        //Put your code here.
     }
 
     public void reloadDatabase() {

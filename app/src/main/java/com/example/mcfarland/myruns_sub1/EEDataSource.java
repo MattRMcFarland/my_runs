@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,16 +36,23 @@ public class EEDataSource {
 
     private static final String TAG = "EE DATA SOURCE";
 
+    static Conversions converter;
+
     public EEDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
+        converter = new Conversions(context);
     }
 
     private void open() throws SQLException {
-        database = dbHelper.getWritableDatabase();
+        if (database == null || !database.isOpen()) {
+            database = dbHelper.getWritableDatabase();
+        }
     }
 
     private void close() {
-        dbHelper.close();
+        if (database.isOpen()) {
+            dbHelper.close();
+        }
     }
 
     public Long createEntry(ExerciseEntry entry) {
@@ -54,8 +62,8 @@ public class EEDataSource {
 
         // put a exercise entry items into each field
         // use raw data.
-        values.put(MySQLiteHelper.COLUMN_ACTIVITY_TYPE, entry.getmActivityType());
         values.put(MySQLiteHelper.COLUMN_INPUT_TYPE, entry.getmInputType());
+        values.put(MySQLiteHelper.COLUMN_ACTIVITY_TYPE, entry.getmActivityType());
         values.put(MySQLiteHelper.COLUMN_DATE_TIME, entry.getmDateTime().getTime().getTime()); // long
         values.put(MySQLiteHelper.COLUMN_DURATION, entry.getmDuration());
         values.put(MySQLiteHelper.COLUMN_DISTANCE, entry.getmDistance());
@@ -67,16 +75,14 @@ public class EEDataSource {
         values.put(MySQLiteHelper.COLUMN_COMMENT, entry.getmComment());
 
         if (entry.getmInputType() != ExerciseEntry.MANUAL_INPUT) {
-            // TODO: if there is tracking data, save that too
-            //Conversions converter = new Conversions(this);
-            //byte blob[] = Conversions.
+            byte blob[] = converter.convertFromListToByteArray(entry.getLocationList());
+            values.put(MySQLiteHelper.COLUMN_GPS_DATA, blob);
         }
 
         Long insertId = (long) -1;
         try {
             open();
             insertId = database.insert(MySQLiteHelper.EXERCISE_ENTRY_TABLE, null, values);
-            close();
         } catch (SQLException e) {
             Log.d(TAG, "ERROR: failed to save entry into database");
         }
@@ -86,14 +92,13 @@ public class EEDataSource {
 
     public void deleteEntry(ExerciseEntry entry) {
         long id = entry.get_id();
-        Log.d(TAG, "delete comment = " + id);
-        System.out.println("Comment deleted with id: " + id);
+        Log.d(TAG, "delete entry with id = " + id);
 
         try {
             open();
             database.delete(MySQLiteHelper.EXERCISE_ENTRY_TABLE, MySQLiteHelper.COLUMN_ID
                     + " = " + id, null);
-            close();
+            //close();
         } catch (SQLException e) {
             Log.d(TAG, "ERROR: failed to delete entry");
         }
@@ -106,7 +111,7 @@ public class EEDataSource {
             open();
             database.delete(MySQLiteHelper.EXERCISE_ENTRY_TABLE, MySQLiteHelper.COLUMN_ID
                     + " = " + id, null);
-            close();
+            //close();
         } catch (SQLException e) {
             Log.d(TAG, "ERROR: failed to delete entry");
         }
@@ -130,7 +135,7 @@ public class EEDataSource {
                 cursor.moveToNext();
             }
             // Make sure to close the cursor
-            cursor.close();
+            //cursor.close();
         } catch (SQLException e) {
             Log.d(TAG,"Error: couldn't open database");
         }
@@ -145,7 +150,7 @@ public class EEDataSource {
             open();
             Cursor cursor = database.query(MySQLiteHelper.EXERCISE_ENTRY_TABLE,
                     allColumns, MySQLiteHelper.COLUMN_ID + " = " + rowID, null, null, null, null);
-            close();
+            //close();
 
             found = cursorToEntry(cursor);
         } catch (SQLException e) {
@@ -155,7 +160,21 @@ public class EEDataSource {
         return found;
     }
 
+    public void deleteAllEntries() {
+
+        try {
+            open();
+            database.delete(MySQLiteHelper.EXERCISE_ENTRY_TABLE, null, null);
+            //close();
+        } catch (SQLException e) {
+            Log.d(TAG, "Error deleting table");
+        }
+    }
+
     private ExerciseEntry cursorToEntry(Cursor cursor) {
+        if (cursor.isBeforeFirst() || cursor.isAfterLast())
+            cursor.moveToFirst();
+
         ExerciseEntry entry = new ExerciseEntry();
 
         entry.set_id(cursor.getLong(0));
@@ -171,7 +190,9 @@ public class EEDataSource {
         entry.setmHeartRate(cursor.getInt(10));
         entry.setmComment(cursor.getString(11));
 
-        // TODO: need to get location list
+        if (entry.getmInputType() != ExerciseEntry.MANUAL_INPUT) {
+            entry.setLocationList(converter.convertFromByteArrayToList(cursor.getBlob(12)));
+        }
 
         return entry;
     }

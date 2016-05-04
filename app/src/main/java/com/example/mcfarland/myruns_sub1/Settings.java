@@ -179,6 +179,9 @@ public class Settings extends ActionBarActivity {
         deleteProfilePicture();
         cleanSnaps();
 
+        EEDataSource dataSource = new EEDataSource(getApplicationContext());
+        dataSource.deleteAllEntries();
+
         Toast toast = Toast.makeText(this, "Cleared Data", Toast.LENGTH_SHORT);
         toast.show();
 

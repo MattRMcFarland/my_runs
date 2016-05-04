@@ -39,7 +39,7 @@ public class ExerciseEntry implements Parcelable {
     public static final int ELLIPTICAL_ACTIVITY = 13;
     public static final int OTHER_ACTIVITY = 14;
 
-    private Long _id;
+    private long _id = -1;
 
     private int mInputType;                 // Manual, GPS or automatic
     private int mActivityType;              // Running, cycling etc.
@@ -66,10 +66,11 @@ public class ExerciseEntry implements Parcelable {
         mClimb = 0.0;
         mHeartRate = 0;
         mComment = "";
+
+        mLocationList = new ArrayList<LatLng>();
     }
 
     public ExerciseEntry(int inputType, int activityType) {
-        this._id = (long) 0;
         mInputType = inputType;
         mActivityType = activityType;
 
@@ -83,6 +84,7 @@ public class ExerciseEntry implements Parcelable {
         mHeartRate = 0;
         mComment = "";
 
+        mLocationList = new ArrayList<LatLng>();
     }
 
     public ExerciseEntry(Long id, int inputType, int activityType) {
@@ -100,6 +102,7 @@ public class ExerciseEntry implements Parcelable {
         mHeartRate = 0;
         mComment = "";
 
+        mLocationList = new ArrayList<LatLng>();
     }
 
     /* -------------------------- PARCEL FUNCTIONS -------------------------- */
@@ -176,7 +179,8 @@ public class ExerciseEntry implements Parcelable {
                 ", \tcalories: " + mCalories +
                 ", \tclimb: " + mClimb +
                 ", \theart rate: " + mHeartRate +
-                ", \tcomment: " + mComment;
+                ", \tcomment: " + mComment +
+                ", \tGPS entries: " + mLocationList.size();
     }
 
     public long get_id() {
@@ -307,5 +311,27 @@ public class ExerciseEntry implements Parcelable {
 
     public void setmComment(String mComment) {
         this.mComment = mComment;
+    }
+
+
+    public LatLng getLastPos() {
+        if (mLocationList.size() > 0)
+            return mLocationList.get(mLocationList.size() - 1);
+        else
+            return null;
+    }
+
+    /* -------------------------- LOCATION LIST -------------------------- */
+
+    public void addLocation(LatLng pos) {
+        mLocationList.add(pos);
+    }
+
+    public void setLocationList(ArrayList<LatLng> locList) {
+        mLocationList = locList;
+    }
+
+    public ArrayList<LatLng> getLocationList() {
+        return mLocationList;
     }
 }
